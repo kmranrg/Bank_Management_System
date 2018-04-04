@@ -1,7 +1,7 @@
 #include<fstream.h>
 #include<conio.h>
 /* This function writes on the file */
-void writing(int data)
+void writing(char data[10])
 {
  ofstream fout;
  fout.open("file.dat");
@@ -9,7 +9,7 @@ void writing(int data)
  fout.close();
 }
 /* This function reads the file */
-void reading(int data)
+void reading(char data[10])
 {
  ifstream fin;
  fin.open("file.dat");
@@ -19,9 +19,9 @@ void reading(int data)
 void main()
 {
  clrscr();
- int data;
+ char data[10];
  cout<<"Enter the number :"<<endl;
- cin>>data;
+ cin.getline(data,10);
  writing(data);
  cout<<"\n\n\t\treading from file...\n\n";
  reading(data);
