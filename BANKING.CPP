@@ -4,6 +4,7 @@
 
 
 #include<fstream.h>
+#include<ctype.h>
 #include<conio.h>
 #include<stdio.h>
 
@@ -30,7 +31,72 @@ public:
 	char rettype();	//function to return type of account
 };         //class ends here
 
+void account::create_account()
+{
+	cout<<"\nEnter The account No.";
+	cin>>acno;
+	cout<<"\n\nEnter The Name of The account Holder : ";
+	gets(name);
+	cout<<"\nEnter Type of The account (C/S) : ";
+	cin>>type;
+	type=toupper(type);
+	cout<<"\nEnter The Initial amount(>=500 for Saving and >=1000 for current ) : ";
+	cin>>deposit;
+	cout<<"\n\n\nAccount Created..";
+}
 
+void account::show_account()
+{
+	cout<<"\nAccount No. : "<<acno;
+	cout<<"\nAccount Holder Name : ";
+	cout<<name;
+	cout<<"\nType of Account : "<<type;
+	cout<<"\nBalance amount : "<<deposit;
+}
+
+
+void account::modify()
+{
+	cout<<"\nThe account No."<<acno;
+	cout<<"\n\nEnter The Name of The account Holder : ";
+	gets(name);
+	cout<<"\nEnter Type of The account (C/S) : ";
+	cin>>type;
+	type=toupper(type);
+	cout<<"\nEnter The amount : ";
+	cin>>deposit;
+}
+
+
+void account::dep(int x)
+{
+	deposit+=x;
+}
+
+void account::draw(int x)
+{
+	deposit-=x;
+}
+
+void account::report()
+{
+	cout<<acno<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<deposit<<endl;
+}
+
+int account::retacno()
+{
+	return acno;
+}
+
+int account::retdeposit()
+{
+	return deposit;
+}
+
+char account::rettype()
+{
+	return type;
+}
 
 //***************************************************************
 //    	THE MAIN FUNCTION OF PROGRAM
