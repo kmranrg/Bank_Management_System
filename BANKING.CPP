@@ -8,6 +8,7 @@
 #include<iomanip.h>
 #include<conio.h>
 #include<stdio.h>
+#include<dos.h>
 
 
 //***************************************************************
@@ -81,7 +82,7 @@ void account::draw(int x)
 
 void account::report()
 {
-	cout<<acno<<setw(10)<<" "<<name<<setw(10)<<" "<<type<<setw(6)<<deposit<<endl;
+	cout<<acno<<setw(20)<<setfill(' ')<<name<<setw(10)<<setfill(' ')<<" "<<type<<setw(20)<<setfill(' ')<<deposit<<endl;
 }
 
 int account::retacno()
@@ -125,7 +126,7 @@ int main()
 	do
 	{
 		clrscr();
-		cout<<"\n\n\n\tMAIN MENU";
+		cout<<"\n\n\n\t\t\t\tMAIN MENU";
 		cout<<"\n\n\t01. NEW ACCOUNT";
 		cout<<"\n\n\t02. DEPOSIT AMOUNT";
 		cout<<"\n\n\t03. WITHDRAW AMOUNT";
@@ -166,7 +167,7 @@ int main()
 			modify_account(num);
 			break;
 		 case '8':
-			cout<<"\n\n\tThanks for using bank managemnt system";
+			cout<<"\n\n\n\n\t\t*** Thank you for Banking with us ***";
 			break;
 		 default :cout<<"\a";
 		}
@@ -301,9 +302,9 @@ void display_all()
 		return;
 	}
 	cout<<"\n\n\t\tACCOUNT HOLDER LIST\n\n";
-	cout<<"====================================================\n";
-	cout<<"A/c no.      NAME           Type  Balance\n";
-	cout<<"====================================================\n";
+	cout<<"=========================================================\n";
+	cout<<"A/c No.\t\tNAME\t\tType\t\tBalance\n";
+	cout<<"=========================================================\n";
 	while(inFile.read((char *) &ac, sizeof(account)))
 	{
 		ac.report();
@@ -334,7 +335,7 @@ void deposit_withdraw(int n, int option)
 			ac.show_account();
 			if(option==1)
 			{
-				cout<<"\n\n\tTO DEPOSITE AMOUNT ";
+				cout<<"\n\n\tTO DEPOSIT AMOUNT ";
 				cout<<"\n\nEnter The amount to be deposited";
 				cin>>amt;
 				ac.dep(amt);
@@ -363,16 +364,26 @@ void deposit_withdraw(int n, int option)
 }
 
 
-//***************************************************************
+//****************************************************************
 //    	INTRODUCTION FUNCTION
 //****************************************************************
 
 
 void intro()
 {
-	cout<<"\n\n\n\t\t\t BANK MANAGEMENT SYSTEM";
+	cout<<"\n\t\t\t************************";
+	cout<<"\n\t\t\t BANK MANAGEMENT SYSTEM";
+	cout<<"\n\t\t\t************************";
 	cout<<"\n\n\n\nProject made by : Kumar Anurag";
 	cout<<"\n\nOrganization : Delhi Technical Campus";
+	delay(800);
+	cout<<"\n\n\n\n\n\n\n\nLoading Project\n";
+	for(int i=0;i<80;i++)
+	{
+	   cout<<"Û";
+	   delay(60);
+	}
+	cout<<"\nPress any key to continue";
 	getch();
 }
 
