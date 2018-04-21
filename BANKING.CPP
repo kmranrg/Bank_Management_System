@@ -1,5 +1,5 @@
-//***************************************************************
-//                   HEADER FILE USED IN PROJECT
+//****************************************************************
+//                   HEADER FILES USED IN PROJECT
 //****************************************************************
 
 
@@ -11,7 +11,7 @@
 #include<dos.h>
 
 
-//***************************************************************
+//****************************************************************
 //                   CLASS USED IN PROJECT
 //****************************************************************
 
@@ -23,6 +23,7 @@ class account
 	char type;
 public:
 	void create_account();	//function to get data from user
+        void valid_name();	//function to warn whether the entered name is correct or not
 	void show_account();	//function to show data on screen
 	void modify();   //function to get new data from user
 	void dep(int);	//function to accept amount and add to balance amount
@@ -33,12 +34,35 @@ public:
 	char rettype();	//function to return type of account
 };         //class ends here
 
+void account::valid_name()
+{
+	int cname=0;
+	for(int i=0;i<50;i++)
+	{
+		if(name[i]!='\0')
+		{
+			if(((name[i]>='a'&&name[i]<='z')||(name[i]>='A'&&name[i]<='Z'))||(name[i]==' '))
+			continue;
+			else
+			cname++;
+		}
+		else
+		break;
+	}
+	if(cname!=0)
+	{
+		cout<<"\nWarningCode:"<<cname<<endl;
+		cout<<"\nWarning: Invalid name!"<<endl;
+	}
+}
+
 void account::create_account()
 {
 	cout<<"\nEnter The account No.";
 	cin>>acno;
 	cout<<"\n\nEnter The Name of The account Holder : ";
 	gets(name);
+        valid_name();
 	cout<<"\nEnter Type of The account (C/S) : ";
 	cin>>type;
 	type=toupper(type);
@@ -62,6 +86,7 @@ void account::modify()
 	cout<<"\nThe account No."<<acno;
 	cout<<"\n\nEnter The Name of The account Holder : ";
 	gets(name);
+        valid_name();
 	cout<<"\nEnter Type of The account (C/S) : ";
 	cin>>type;
 	type=toupper(type);
@@ -101,8 +126,8 @@ char account::rettype()
 }
 
 
-//***************************************************************
-//    	function declaration
+//****************************************************************
+//    	functions declaration
 //****************************************************************
 void write_account();	//function to write record in binary file
 void display_sp(int);	//function to display account details given by user
@@ -112,7 +137,7 @@ void display_all();		//function to display all account details
 void deposit_withdraw(int, int); // function to desposit/withdraw amount for given account
 void intro();	//introductory screen function
 
-//***************************************************************
+//****************************************************************
 //    	THE MAIN FUNCTION OF PROGRAM
 //****************************************************************
 
@@ -177,7 +202,7 @@ int main()
 }
 
 
-//***************************************************************
+//****************************************************************
 //    	function to write in file
 //****************************************************************
 
@@ -191,7 +216,7 @@ void write_account()
 	outFile.close();
 }
 
-//***************************************************************
+//****************************************************************
 //    	function to read specific record from file
 //****************************************************************
 
@@ -221,7 +246,7 @@ void display_sp(int n)
 }
 
 
-//***************************************************************
+//****************************************************************
 //    	function to modify record of file
 //****************************************************************
 
@@ -255,7 +280,7 @@ void modify_account(int n)
 		cout<<"\n\n Record Not Found ";
 }
 
-//***************************************************************
+//****************************************************************
 //    	function to delete record of file
 //****************************************************************
 
@@ -287,7 +312,7 @@ void delete_account(int n)
 	cout<<"\n\n\tRecord Deleted ..";
 }
 
-//***************************************************************
+//****************************************************************
 //    	function to display all accounts deposit list
 //****************************************************************
 
@@ -312,7 +337,7 @@ void display_all()
 	inFile.close();
 }
 
-//***************************************************************
+//****************************************************************
 //    	function to deposit and withdraw amounts
 //****************************************************************
 
